@@ -1,9 +1,72 @@
 import './styles.css';
-import React, {useState} from "react";
 
+import React, {Component, useState, useEffect} from "react";
+import { Route, Switch } from "react-router-dom";
+import { Router } from 'react-router';
 import LoadBasicsForm from './Components/LoadBasicsForm';
+import LoginForm from './Components/LoginForm/LoginForm';
+//import RegisterForm from './Components/RegisterForm/RegsisterForm'
+import NavBar from './Components/NavBar/NavBar';
+import Home from './Components/Home/Home';
+
+import {
+  Status,
+  AddRoom,
+  RunSim,
+  Results
+} from "./pages";
+import RegisterForm from './Components/RegisterForm/RegisterForm';
+
 
 export default function App() {
+
+  const [users, setUsers] = useState([]);
+
+  const [userFormData,setUserFormData] = useState({
+    username: "",
+    password: "",
+    zipcode: "",
+    
+  });
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  
+  const createUser = async (event) => {
+    event.preventDefault();
+    const body = {...userFormData}; // spreads data into the body
+    try {
+       const response = await fetch("http://localhost:8800/user", {
+       method: "POST",
+       headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+     });
+     // what to do after
+    } catch(error) {
+       console.error(error);
+    } finally {
+       await getUsers();
+    }
+
+  }
+
+    // Index
+ const getUsers = async () => {
+  try {
+    const response = await fetch("http://localhost:8800/user");
+    const data = await response.json();
+    setUsers([...data]);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
+
+
+
 
   const [loads, setLoads] = useState([]);
   const [formData, setFormData] = useState({
@@ -52,15 +115,30 @@ export default function App() {
     }
   };
 
-  getLoads();
-  console.log(loads);
+
 
   
 
   return (
+  
     <div className="App">
-      <LoadBasicsForm formData = {formData} setFormData = {setFormData}></LoadBasicsForm>
+      <NavBar></NavBar>
+      
+      <main>
+        <RegisterForm createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData}></RegisterForm>
+        <LoginForm></LoginForm>
+
+        <Switch>
+          
+          <Route path="/dev" render={() => <LoadBasicsForm formData = {formData} setFormData = {setFormData} /> } />
+          <Route path="/status" render={() => <Status />} />
+          <Route path="/addroom" render={() => <AddRoom />} />
+          <Route path="/sim" render={() => <RunSim />} />
+          <Route path="/results" render={() => <Results />} />
+          </Switch>
+        </main>
     </div>
+    
   );
 }
 

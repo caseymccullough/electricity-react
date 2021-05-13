@@ -15,7 +15,8 @@ export default function LoadBasicsForm(props) {
  
    const handleSubmit = (event) => {
      event.preventDefault();
-     console.log (props.formData);
+     //props.
+     //console.log (props.formData);
     // props.setLatitude(formData.latitude);
     // props.setLongitude(formData.longitude);
  
