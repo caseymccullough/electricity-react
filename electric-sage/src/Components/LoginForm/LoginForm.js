@@ -1,36 +1,31 @@
 import { useState, useEffect, useRef } from "react";
+import style from '../../Style/Forms.css';
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   
-   // const [userData, setUserData] = useState ({
-   //    name: "",
-   //    password:""
-   // })
 
    const usernameVal = useRef();
    const passwordVal = useRef();
-
-   // Need help with all validation related below.
- 
-   // const handleChange = (event)=> {
-   //   props.setFormData({ ...props.formData, [event.target.name]: event.target.value});
-   //   console.log(event.target.name + ": " + event.target.value);
-   // }
  
    const handleSubmit = (event) => {
      event.preventDefault();
-      const username = usernameVal.current.value;
-      const password = passwordVal.current.value;
-      //
+     console.log("users: ", props.users);
 
-      console.log (username);
-      console.log (password);
-   
+      const currentUser = props.users.find(user =>
+       user.username === usernameVal.current.value && user.password === passwordVal.current.value);
+
+         if(currentUser){
+            console.log ("user found: ", currentUser);
+         }
+         else {
+            console.log ("no such user");
+         }
+        
    }
 
 
  return (
-   <div className="user-login-page">
+   <div id="user-login-page" className="form">
      <h1>User Login Form</h1>
 
      <form onSubmit={handleSubmit} className="user-login-form">

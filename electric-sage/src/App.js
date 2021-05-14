@@ -1,32 +1,41 @@
 import './styles.css';
 
-import React, {Component, useState, useEffect} from "react";
-import { Route, Switch } from "react-router-dom";
-import { Router } from 'react-router';
-import LoadBasicsForm from './Components/LoadBasicsForm';
-import LoginForm from './Components/LoginForm/LoginForm';
-//import RegisterForm from './Components/RegisterForm/RegsisterForm'
+import React, {useState, useEffect} from "react";
+import { Route, Switch, Link } from "react-router-dom";
+
+import LoadProfile from './Components/LoadProfile/LoadProfile';
 import NavBar from './Components/NavBar/NavBar';
 import Home from './Components/Home/Home';
 
 import {
   Status,
-  AddRoom,
   RunSim,
   Results
 } from "./pages";
-import RegisterForm from './Components/RegisterForm/RegisterForm';
-
 
 export default function App() {
 
   const [users, setUsers] = useState([]);
+  const [loads, setLoads] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   const [userFormData,setUserFormData] = useState({
     username: "",
     password: "",
-    zipcode: "",
-    
+    zipcode: "",  
+  });
+
+  useEffect(() => {
+    getUsers();
+  })
+
+  
+  const [loadFormData, setLoadFormData] = useState({
+    name: "",
+    wattage: 0,
+    standbyWattage: 0,
+    hoursDaily: 0
+   
   });
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -62,22 +71,9 @@ export default function App() {
   }
 };
 
-
-
-
-
-
-
-  const [loads, setLoads] = useState([]);
-  const [formData, setFormData] = useState({
-    name: "",
-    wattage: 0,
-    standbyWattage: 0
-  });
-
   const createLoad = async (e) => {
     e.preventDefault();
-    const body = { ...formData }; // spreads data from the form
+    const body = { ...loadFormData }; // spreads data from the form
     try {
       const response = await fetch ("http://localhost:8800/load", {
         method: "POST",
@@ -87,7 +83,7 @@ export default function App() {
         body: JSON.stringify(body)
       });
 
-      setFormData({ // clear out the form
+      setLoadFormData({ // clear out the form
         name: "",
         wattage: "",
         standbyWattage: ""
@@ -101,7 +97,7 @@ export default function App() {
 
   /* called on in the forms */
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.targetValue})
+    setLoadFormData({ ...loadFormData, [e.target.id]: e.targetValue})
   };
 
   // Index
@@ -125,16 +121,12 @@ export default function App() {
       <NavBar></NavBar>
       
       <main>
-        <RegisterForm createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData}></RegisterForm>
-        <LoginForm></LoginForm>
-
-        <Switch>
-          
-          <Route path="/dev" render={() => <LoadBasicsForm formData = {formData} setFormData = {setFormData} /> } />
-          <Route path="/status" render={() => <Status />} />
-          <Route path="/addroom" render={() => <AddRoom />} />
-          <Route path="/sim" render={() => <RunSim />} />
-          <Route path="/results" render={() => <Results />} />
+          <Switch>
+            <Route exact path="/" render={() => <Home users = {users} createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData} setCurrentUser = {setCurrentUser}/>} />
+            <Route path="/status" render={() => <Status />} />
+            <Route path="/loads" render={() => <LoadProfile loadFormData = {loadFormData} setLoadFormData = {setLoadFormData} currentUser = {currentUser}/> } />
+            <Route path="/sim" render={() => <RunSim />} />
+            <Route path="/results" render={() => <Results />} />
           </Switch>
         </main>
     </div>

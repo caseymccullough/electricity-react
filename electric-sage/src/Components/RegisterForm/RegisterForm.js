@@ -1,4 +1,4 @@
-
+import style from '../../Style/Forms.css';
 import {useState} from "react";
 
 export default function RegisterForm(props) {
@@ -17,7 +17,7 @@ export default function RegisterForm(props) {
    }
  
  return (
-   <div className="registration-page">
+   <div id="registration-page" className="form">
      <h1>Registration Form</h1>
 
      <form id="registration-form" onSubmit={props.createUser}>
