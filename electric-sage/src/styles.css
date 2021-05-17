@@ -1,11 +1,13 @@
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
 }
 
 .form{
-  margin: auto;
+  margin: 0 15px;
   background-color: darkgray;
-  width: 25%;
+  min-width: 40%;
   padding: 20px 50px;
   border-radius: 15px;
   clear: both;
@@ -26,6 +28,7 @@ button {
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 #list-and-form{
@@ -33,8 +36,29 @@ button {
   flex-direction: row;
   justify-content: space-between;
 }
+
+#load-list-container{
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: aqua;
+  min-width: 60%;
+  border-radius: 15px;
+
+}
+
+#loads-table-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+
+}
 #loads-table{
-  margin: 0 250px;
+
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
 
 }
 

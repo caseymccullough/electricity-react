@@ -6,6 +6,8 @@ import { Route, Switch, Link } from "react-router-dom";
 import LoadProfile from './Components/LoadProfile/LoadProfile';
 import NavBar from './Components/NavBar/NavBar';
 import Home from './Components/Home/Home';
+import RunSim from './Components/RunSim/RunSim';
+import Results from './Components/Results/Results'
 
 
 export default function App() {
@@ -109,13 +111,13 @@ useEffect (() => {
            {currentUser ? <LoadProfile  currentUser = {currentUser} setLoads = {setLoads} loads = {loads} getLoads = {getLoads}/> : 
            <Home users = {users} setCurrentUser = {setCurrentUser} />  
             } 
-          {/* <Switch>
-            <Route exact path="/" render={() => <Home users = {users} createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData} setCurrentUser = {setCurrentUser}/>} />
+          { <Switch>
+            {/* <Route exact path="/" render={() => <Home users = {users} createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData} setCurrentUser = {setCurrentUser}/>} />
             <Route path="/status" render={() => <Status />} />
-            <Route path="/loads" render={() => <LoadProfile loadFormData = {loadFormData} setLoadFormData = {setLoadFormData} currentUser = {currentUser}/> } />
+            <Route path="/loads" render={() => <LoadProfile loadFormData = {loadFormData} setLoadFormData = {setLoadFormData} currentUser = {currentUser}/> } /> */}
             <Route path="/sim" render={() => <RunSim />} />
             <Route path="/results" render={() => <Results />} />
-          </Switch> */}
+          </Switch> }
         </main>
     </div>
     

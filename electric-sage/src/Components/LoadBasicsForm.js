@@ -24,7 +24,10 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
 
   const addLoad = async (e) => {
     e.preventDefault();
-    const body = { ...formData }; // spreads data from the form
+
+    const hours = formData.dailyUseHours + formData.dailyUseMinutes / 60;
+    
+    const body = { ...formData, dailyUseHours: hours }; // spreads data from the form
     try {
       const response = await fetch ("http://localhost:8800/load", {
         method: "POST",

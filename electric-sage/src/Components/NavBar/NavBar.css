@@ -15,8 +15,7 @@ ul{
    flex-direction: row;
    justify-content: space-between;
    padding: 0 25px;
-
-
+   margin-bottom: 25px;
 }
 
 #nav-center-text {
