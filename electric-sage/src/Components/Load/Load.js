@@ -1,9 +1,9 @@
-export default function Load(props) {
+export default function Load({load}) {
 
    return (
       
-         <tr classname="load-row">
-            <td>{props.load.name}</td> <td>{props.load.wattage}</td><td>{props.load.standbyWattage}</td>
+         <tr className="load-row">
+            <td>{load.name}</td><td>{load.wattage}</td><td>{load.standbyWattage}</td><td>{load.dailyUseHours}</td>
          </tr>
      
       

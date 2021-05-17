@@ -1,14 +1,15 @@
 import {useState} from "react";
 
-export default function LoadBasicsForm(props) {
+export default function LoadBasicsForm({currentUser, getLoads}) {
 
-  const [loads, setLoads] = useState([]);
+  //const [loads, setLoads] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     wattage: "",
     standbyWattage: 0,
     dailyUseHours: "",
     dailyUseMinutes: ""
+    // add user info here??
   });
   /*
   const [nameProps, setName] = useInput("");
@@ -32,52 +33,35 @@ export default function LoadBasicsForm(props) {
         },
         body: JSON.stringify(body)
       });
-      const data = await addLoad.json()
+      //const data = await addLoad.json()
 
       setFormData({ // clear out the form
         name: "",
         wattage: "",
         standbyWattage: 0,
         dailyUseHours: "",
-        dailyUseMinutes: "" // add user info here??
+        dailyUseMinutes: "" 
       });
     } catch(error){
         console.error(error);
-    } finally {
-      await getLoads();
-    } 
+    }finally{
+      getLoads();
+    }
+    
+
   }
 
-
-  // Index
-  const getLoads = async () => {
-    try {
-      const response = await fetch("http://localhost:8800/load");
-      const data = await response.json();
-      setLoads([...data]);
-    }catch(error) {
-      console.error(error);
-    }
-  };
-
-   /* name is name of thing to which it's bound  
-     set formData to the spread of formData, find by name, assign value
-      ...formData returns series of comma-separated values
-      we add to that the name of one data item : the new value for that item
-       this will overwrite the last one (!).  See #1 above. 
-   
-
-   */
 
 
 
 
  return (
    <div className="load-basics-page">
-     <h1>Load Basics Form</h1>
-     <p>Submit Load Information Below</p>
+     
+     
 
      <form onSubmit={addLoad} className="form" id="add-load-form">
+     <h2>Submit New Load</h2>
        <label>
          Load: {" "}
          <input 
@@ -111,7 +95,7 @@ export default function LoadBasicsForm(props) {
        </label>
        <br></br>
        <label>
-         Daily Use
+         Daily Use: {" "}
          <input 
            type = "number"
            id = "dailyUseHours" 
@@ -132,7 +116,7 @@ export default function LoadBasicsForm(props) {
       </label>
 
        <br></br>
-       <button onClick={addLoad}>Submit Data</button>
+       <button onClick={addLoad}>Add Load</button>
      </form>
  </div>
 );

@@ -1,33 +1,49 @@
-import style from '../../Style/Forms.css';
+import style from '../../styles.css';
 import {useState} from "react";
 
 export default function RegisterForm(props) {
   
-   /* name is name of thing to which it's bound  
-     set formData to the spread of formData, find by name, assign value
-      ...formData returns series of comma-separated values
-      we add to that the name of one data item : the new value for that item
-       this will overwrite the last one (!).  See #1 above. 
-   */
-     
+       const [userFormData, setUserFormData] = useState({
+        username: "",
+        password: "",
+        zipcode: "",  
+      });
 
    const handleChange = (event)=> {
-     props.setUserFormData({ ...props.userFormData, [event.target.name]: event.target.value});
+     setUserFormData({ ...userFormData, [event.target.name]: event.target.value});
      console.log(event.target.name + ": " + event.target.value);
    }
+
+   const createUser = async (event) => {
+    event.preventDefault();
+    const body = {...userFormData}; // spreads data into the body
+    try {
+       const response = await fetch("http://localhost:8800/user", {
+       method: "POST",
+       headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    
+    });
+    console.log("response: ", response);
+    } catch(error) {
+       console.error(error);
+    } 
+  }
  
  return (
    <div id="registration-page" className="form">
      <h1>Registration Form</h1>
 
-     <form id="registration-form" onSubmit={props.createUser}>
+     <form id="registration-form" onSubmit={createUser}>
        <label>
          Username
          <input 
            type = "text" 
            name="username"
            placeholder = "username"
-           value={props.userFormData.username} 
+           value={userFormData.username} 
            onChange={handleChange}
            ></input>
        </label>
@@ -37,7 +53,7 @@ export default function RegisterForm(props) {
          <input type="text" 
          name="password"
          placeholder = "password"
-         value={props.userFormData.password}
+         value={userFormData.password}
          onChange={handleChange}
          ></input>
        </label>
@@ -47,11 +63,11 @@ export default function RegisterForm(props) {
          <input type="number" 
          name="zipcode"
          placeholder = "zip code"
-         value={props.userFormData.zipcode}
+         value={userFormData.zipcode}
          onChange={handleChange}
          ></input>
        </label>
-       <button onClick={props.createUser}>Register</button>
+       <button onClick={createUser}>Register</button>
      </form>
  </div>
 );

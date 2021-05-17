@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import style from '../../Style/Forms.css';
+import style from '../../styles.css';
 
 export default function LoginForm(props) {
   
-
    const usernameVal = useRef();
    const passwordVal = useRef();
  
@@ -16,6 +15,7 @@ export default function LoginForm(props) {
 
          if(currentUser){
             console.log ("user found: ", currentUser);
+            props.setLoggedIn(true);
          }
          else {
             console.log ("no such user");
