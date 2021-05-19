@@ -12,9 +12,42 @@ import Results from './Components/Results/Results'
 
 export default function App() {
 
+  const [showHome, setShowHome] = useState(true);
+  const [showLoadProfile, setShowLoadProfile] = useState(false);
+  const [showSim, setShowSim] = useState(false);
+  const[showResults, setShowResults] = useState(false);
+
+
   const [users, setUsers] = useState([]);
   const [loads, setLoads] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+
+  const closeAllPages = () =>
+  {
+    setShowHome(false);
+    setShowLoadProfile(false);
+    setShowSim(false);
+    setShowResults(false);
+
+  }
+  const goToLoadProfile = () =>
+  {
+    closeAllPages();
+    setShowLoadProfile(true);
+  }
+
+
+  const goToSim = () =>
+  {
+    closeAllPages();
+    setShowSim(true);
+  }
+
+  const goToResults = () =>{
+    closeAllPages();
+    setShowResults(true);
+  }
+
 
   /* ignore this */
   const fakeLoads = [
@@ -105,19 +138,21 @@ useEffect (() => {
   return (
   
     <div className="App">
-      <NavBar></NavBar>
+      <NavBar goToLoadProfile = {goToLoadProfile} goToSim = {goToSim} goToResults = {goToResults}></NavBar>
       
       <main>
-           {currentUser ? <LoadProfile  currentUser = {currentUser} setLoads = {setLoads} loads = {loads} getLoads = {getLoads}/> : 
-           <Home users = {users} setCurrentUser = {setCurrentUser} />  
-            } 
-          { <Switch>
-            {/* <Route exact path="/" render={() => <Home users = {users} createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData} setCurrentUser = {setCurrentUser}/>} />
-            <Route path="/status" render={() => <Status />} />
-            <Route path="/loads" render={() => <LoadProfile loadFormData = {loadFormData} setLoadFormData = {setLoadFormData} currentUser = {currentUser}/> } /> */}
+          {showHome ? <Home users = {users} setCurrentUser = {setCurrentUser} setShowLoadProfile = {setShowLoadProfile} setShowHome = {setShowHome}/> : <br></br>}
+           {showLoadProfile ? <LoadProfile  currentUser = {currentUser} setLoads = {setLoads} loads = {loads} getLoads = {getLoads} setShowLoadProfile = {setShowLoadProfile} setShowSim = {setShowSim}/> : 
+           <div/>}  {/*empty do-nothing tag */}
+            {showSim ?  <RunSim loads = {loads} seeResultsPage = {goToResults}></RunSim> : <div/>}  {/*empty do-nothing tag */}
+            {showResults ? <Results ></Results> : <div/>}  {/*empty do-nothing tag */}
+           {/* <Switch>
+            {<Route exact path="/" render={() => <Home users = {users} createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData} setCurrentUser = {setCurrentUser}/>} />
+             <Route path="/status" render={() => <Status />} />
+            <Route path="/loads" render={() => <LoadProfile loadFormData = {loadFormData} setLoadFormData = {setLoadFormData} currentUser = {currentUser}/> } /> 
             <Route path="/sim" render={() => <RunSim />} />
             <Route path="/results" render={() => <Results />} />
-          </Switch> }
+          </Switch>  */}
         </main>
     </div>
     

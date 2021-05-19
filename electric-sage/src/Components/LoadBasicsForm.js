@@ -8,7 +8,8 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
     wattage: "",
     standbyWattage: 0,
     dailyUseHours: "",
-    dailyUseMinutes: ""
+    dailyUseMinutes: "",
+    currentWattage: ""
     // add user info here??
   });
   /*
@@ -27,7 +28,7 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
 
     const hours = formData.dailyUseHours + formData.dailyUseMinutes / 60;
     
-    const body = { ...formData, dailyUseHours: hours }; // spreads data from the form
+    const body = { ...formData, dailyUseHours: hours, currentWattage: 0 }; // spreads data from the form
     try {
       const response = await fetch ("http://localhost:8800/load", {
         method: "POST",

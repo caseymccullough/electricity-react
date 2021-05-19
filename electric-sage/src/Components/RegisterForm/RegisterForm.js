@@ -31,6 +31,12 @@ export default function RegisterForm(props) {
        console.error(error);
     } 
   }
+
+  const handleSubmit = () =>{
+    createUser();
+    props.setShowHome(false);
+    props.setShowLoadProfile(true);
+  }
  
  return (
    <div id="registration-page" className="form">
@@ -67,7 +73,7 @@ export default function RegisterForm(props) {
          onChange={handleChange}
          ></input>
        </label>
-       <button onClick={createUser}>Register</button>
+       <button onClick={handleSubmit}>Register</button>
      </form>
  </div>
 );

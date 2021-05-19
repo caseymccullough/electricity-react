@@ -15,7 +15,8 @@ export default function LoginForm(props) {
 
          if(currentUser){
             console.log ("user found: ", currentUser);
-            props.setLoggedIn(true);
+            props.setShowHome(false);
+            props.setShowLoadProfile(true);
          }
          else {
             console.log ("no such user");
