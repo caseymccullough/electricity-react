@@ -18,7 +18,7 @@ export default function RegisterForm(props) {
     event.preventDefault();
     const body = {...userFormData}; // spreads data into the body
     try {
-       const response = await fetch("http://localhost:8800/user", {
+       const response = await fetch("https://electric-sage-api.herokuapp.com/user", {
        method: "POST",
        headers: {
         "Content-Type": "application/json"

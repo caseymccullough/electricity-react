@@ -8,9 +8,11 @@ export default function Load({load}) {
       deleteLoad(load.name);
    }
 
+   
+
    const deleteLoad = async (name) => {
       try {
-        const response = await fetch(`http://localhost:8800/load/${name}`, {
+        const response = await fetch(`https://electric-sage-api.herokuapp.com/load/${name}`, {
           method: "DELETE"
         })
       } catch (err) {
