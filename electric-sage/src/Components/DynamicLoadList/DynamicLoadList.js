@@ -1,9 +1,21 @@
 import Load from '../Load/Load';
-import ClickableLoad from '../ClickableLoad/ClickableLoad';
+import DynamicLoad from '../DynamicLoad/DynamicLoad';
 import style from '../../styles.css';
+import { localStorageAvailable } from '@material-ui/data-grid';
+
+
 
 export default function DynamicLoadList({loads, time}) {
       
+
+   const pushOnOffReports = (time) => {
+      loads.forEach(load => load.issueOnOffReport(time))
+   }
+
+   const turnOffAll = () => {
+      loads.forEach(load => load.turnOff())
+   }
+
    return (
       <div id="loads-table-container">
          <div id="loads-table" >
@@ -19,7 +31,7 @@ export default function DynamicLoadList({loads, time}) {
                </thead>
                <tbody>
                      {loads.map((load, i) => 
-                  <ClickableLoad load = {load} time = {time}  key= {i}></ClickableLoad>
+                  <DynamicLoad load = {load} time = {time}  key= {i}></DynamicLoad>
                   )}
                </tbody>
             </table>

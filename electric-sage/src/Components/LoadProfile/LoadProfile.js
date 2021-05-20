@@ -4,12 +4,9 @@ import LoadBasicsForm from '../LoadBasicsForm';
 import LoadList from '../LoadList/LoadList';
 
 
-export default function LoadProfile( {currentUser, loads, getLoads, setShowLoadProfile, setShowSim} ) {
+export default function LoadProfile( {currentUser, loads, getLoads, setShowSim} ) {
 
-   const shiftToSim = () => {
-      setShowLoadProfile(false);
-      setShowSim(true);
-   }
+
 
    return (
       <div id="load-profile">
@@ -17,8 +14,8 @@ export default function LoadProfile( {currentUser, loads, getLoads, setShowLoadP
             <div id="load-list-container" >
                <h1>Load Profile</h1>
                <LoadList loads = {loads} ></LoadList>
-               <button id="run-sim-btn" className="btn" onClick={shiftToSim}>
-                  <h3>Run Simulation</h3>
+               <button id="run-sim-btn" className="btn" onClick={setShowSim}>
+                  Run Simulation
                </button> 
             </div>
             

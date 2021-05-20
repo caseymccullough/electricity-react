@@ -52,9 +52,9 @@ export default function RunSim({loads, totalWattageHistory, setTotalWattageHisto
          </div>
          <DynamicLoadList loads = {loads} time = {time}></DynamicLoadList>
          
-         {isComplete ?  <button id="see-results-btn" className="btn" onClick={seeResultsPage}>
+         <button id="see-results-btn"  onClick={seeResultsPage}>
             <h3>See Results</h3>
-         </button> : <div/>  }
+         </button>
 
          <div id="realtime-wattage"></div>
 

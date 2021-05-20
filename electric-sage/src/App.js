@@ -51,61 +51,9 @@ export default function App() {
   }
 
 
-  /* ignore this */
-  const fakeLoads = [
-    {
-        "standbyWattage": 2,
-        "_id": "609c3a0385a28933f7df5775",
-        "name": "powertool",
-        "wattage": 50,
-        "hoursDaily": 1,
-        "__v": 0
-    },
-    {
-        "standbyWattage": 0,
-        "_id": "60a0fc5a9ba127b86e7bedc6",
-        "name": "Lamp",
-        "wattage": 100,
-        "hoursDaily": 3,
-        "__v": 0
-    },
-    {
-        "standbyWattage": 0,
-        "_id": "60a174239ba127b86e7bedc8",
-        "name": "fan",
-        "wattage": 30,
-        "hoursDaily": 10,
-        "__v": 0
-    },
-    {
-        "standbyWattage": 0,
-        "_id": "60a174859ba127b86e7bedc9",
-        "name": "light fixture",
-        "wattage": 120,
-        "hoursDaily": 12,
-        "__v": 0
-    },
-    {
-        "standbyWattage": 10,
-        "_id": "60a174aa9ba127b86e7bedca",
-        "name": "television",
-        "wattage": 140,
-        "hoursDaily": 3.5,
-        "__v": 0
-    }
-  ]
-  const fakeUser = {
-    "username": "fake",
-    "password": "fake",
-    "zipcode": 99999,
-    "loads": fakeLoads
-  }
-
-
-
   const getUsers = async () => {
     try {
-      const result = await fetch('http://localhost:8800/user');
+      const result = await fetch('https://electric-sage-api.herokuapp.com/user');
       const data = await result.json();
       setUsers(data);
     } catch (err) {
@@ -116,7 +64,7 @@ export default function App() {
     // Index
     const getLoads = async () => {
       try {
-        const response = await fetch("http://localhost:8800/load");
+        const response = await fetch("https://electric-sage-api.herokuapp.com/load");
         const data = await response.json();
         setLoads([...data]);
       }catch(error) {

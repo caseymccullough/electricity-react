@@ -1,8 +1,10 @@
 .App {
   text-align: center;
+  margin: 0 auto;
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
   background-color: black;
+  justify-content: center;
 }
 
 #reg-login-container{
@@ -72,6 +74,8 @@ button {
   flex-direction: column;
   justify-content: space-between; 
 
+  margin: 40px;
+
 }
 #loads-table{
 
@@ -84,6 +88,16 @@ button {
 #simulation{
   background-color: black;
   color: white;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+}
+
+#see-results-btn{
+  margin: 0 auto;
 }
 
 #realtime-wattage{

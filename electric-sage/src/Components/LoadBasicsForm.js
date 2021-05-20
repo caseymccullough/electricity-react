@@ -27,9 +27,9 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
     //const hours = formData.dailyUseHours + formData.dailyUseMinutes / 60;
     const current = formData.standbyWattage;
     
-    const body = { ...formData, onOffHistory: [], currentWattage: current }; // spreads data from the form
+    const body = { ...formData, isOn: false, onOffHistory: [], currentWattage: current }; // spreads data from the form
     try {
-      const response = await fetch ("http://localhost:8800/load", {
+      const response = await fetch ("https://electric-sage-api.herokuapp.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
