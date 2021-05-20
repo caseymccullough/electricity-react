@@ -1,5 +1,4 @@
 import Load from '../Load/Load';
-import ClickableLoad from '../ClickableLoad/ClickableLoad';
 import style from '../../styles.css';
 
 export default function LoadList({loads}) {

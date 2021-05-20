@@ -7,9 +7,7 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
     name: "",
     wattage: "",
     standbyWattage: 0,
-    dailyUseHours: "",
-    dailyUseMinutes: "",
-    currentWattage: ""
+
     // add user info here??
   });
   /*
@@ -26,9 +24,10 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
   const addLoad = async (e) => {
     e.preventDefault();
 
-    const hours = formData.dailyUseHours + formData.dailyUseMinutes / 60;
+    //const hours = formData.dailyUseHours + formData.dailyUseMinutes / 60;
+    const current = formData.standbyWattage;
     
-    const body = { ...formData, dailyUseHours: hours, currentWattage: 0 }; // spreads data from the form
+    const body = { ...formData, onOffHistory: [], currentWattage: current }; // spreads data from the form
     try {
       const response = await fetch ("http://localhost:8800/load", {
         method: "POST",
@@ -37,14 +36,14 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
         },
         body: JSON.stringify(body)
       });
-      //const data = await addLoad.json()
+      
+      console.log(JSON.stringify(body));
 
       setFormData({ // clear out the form
         name: "",
         wattage: "",
         standbyWattage: 0,
-        dailyUseHours: "",
-        dailyUseMinutes: "" 
+  
       });
     } catch(error){
         console.error(error);

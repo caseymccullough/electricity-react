@@ -9,11 +9,11 @@ export default function AreaChart(props)
   chartType="AreaChart"
   loader={<div>Loading Chart</div>}
   data={[
-    ['Year', 'Sales', 'Expenses'],
-    ['2013', 1000, 400],
-    ['2014', 1170, 460],
-    ['2015', 660, 1120],
-    ['2016', 1030, 540],
+    ['Time', 'Dishwasher', 'Computer'],
+    ['1', 1000, 400],
+    ['3', 1170, 460],
+    ['7', 660, 1120],
+    ['20', 1030, 540],
   ]}
   options={{
     isStacked: true,

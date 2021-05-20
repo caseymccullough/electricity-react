@@ -1,13 +1,25 @@
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
+  font-size: 10px;
   background-color: black;
 }
 
-.form{
-  margin: 0 15px;
+#reg-login-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 400px;
+  margin: auto;
   background-color: darkgray;
-  min-width: 40%;
+
+}
+
+.form{
+
+  
+ 
+  
   padding: 20px 50px;
   border-radius: 15px;
   clear: both;
@@ -18,7 +30,7 @@ input {
   background-color: lightblue;
   border-radius: 2px;
   margin: 10px 0;
-  width: 60px;
+  width: 80px;
 }
 button {
   background-color: #4CAF50;
@@ -58,24 +70,26 @@ button {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  font-size: 2em;
 }
 
 #simulation{
-  background-color: green;
+  background-color: black;
   color: white;
 }
 
 #realtime-wattage{
   width: 1440px;
-  height: 200px; 
-  background-color: blue;
+  height: 200px;
+  border: 3 px darkgray; 
+  background-color: lightgray;
   margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
 #stopwatch-wattage-container{
-  border: black solid 2px; 
+  margin-top: 25px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -84,14 +98,30 @@ button {
 
 .stop-watch{
   height: 25vh;
-  width: 43vw;
+  width: 25%;
   background-color: #0d0c1b;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
+#wattage-meter{
+  color:rgb(87, 174, 1);
+  height: 25vh;
+  width: 25%;
+  background-color: #0d0c1b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+#total-wattage{
+  font-size: 8em;
+  margin-top: 20px;
+}
 #chart-container{
   display: flex;
   flex-direction: row;

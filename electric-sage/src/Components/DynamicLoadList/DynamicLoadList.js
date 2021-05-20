@@ -2,9 +2,7 @@ import Load from '../Load/Load';
 import ClickableLoad from '../ClickableLoad/ClickableLoad';
 import style from '../../styles.css';
 
-export default function DynamicLoadList({loads, adjustTotalWattage}) {
-
-   
+export default function DynamicLoadList({loads, time}) {
       
    return (
       <div id="loads-table-container">
@@ -21,7 +19,7 @@ export default function DynamicLoadList({loads, adjustTotalWattage}) {
                </thead>
                <tbody>
                      {loads.map((load, i) => 
-                  <ClickableLoad load = {load} adjustTotalWattage = {adjustTotalWattage} key= {i}></ClickableLoad>
+                  <ClickableLoad load = {load} time = {time}  key= {i}></ClickableLoad>
                   )}
                </tbody>
             </table>

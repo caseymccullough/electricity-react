@@ -22,6 +22,8 @@ export default function App() {
   const [loads, setLoads] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 
+  const [totalWattageHistory, setTotalWattageHistory] = useState([]);
+
   const closeAllPages = () =>
   {
     setShowHome(false);
@@ -144,15 +146,9 @@ useEffect (() => {
           {showHome ? <Home users = {users} setCurrentUser = {setCurrentUser} setShowLoadProfile = {setShowLoadProfile} setShowHome = {setShowHome}/> : <br></br>}
            {showLoadProfile ? <LoadProfile  currentUser = {currentUser} setLoads = {setLoads} loads = {loads} getLoads = {getLoads} setShowLoadProfile = {setShowLoadProfile} setShowSim = {setShowSim}/> : 
            <div/>}  {/*empty do-nothing tag */}
-            {showSim ?  <RunSim loads = {loads} seeResultsPage = {goToResults}></RunSim> : <div/>}  {/*empty do-nothing tag */}
-            {showResults ? <Results ></Results> : <div/>}  {/*empty do-nothing tag */}
-           {/* <Switch>
-            {<Route exact path="/" render={() => <Home users = {users} createUser = {createUser} userFormData = {userFormData} setUserFormData = {setUserFormData} setCurrentUser = {setCurrentUser}/>} />
-             <Route path="/status" render={() => <Status />} />
-            <Route path="/loads" render={() => <LoadProfile loadFormData = {loadFormData} setLoadFormData = {setLoadFormData} currentUser = {currentUser}/> } /> 
-            <Route path="/sim" render={() => <RunSim />} />
-            <Route path="/results" render={() => <Results />} />
-          </Switch>  */}
+            {showSim ?  <RunSim loads = {loads} seeResultsPage = {goToResults} totalWattageHistory = {totalWattageHistory} setTotalWattageHistory = {setTotalWattageHistory}></RunSim> : <div/>}  {/*empty do-nothing tag */}
+            {showResults ? <Results loads = {loads} ></Results> : <div/>}  {/*empty do-nothing tag */}
+
         </main>
     </div>
     

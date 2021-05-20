@@ -4,17 +4,23 @@ import '../../styles.css';
 import Timer from "../Timer/Timer";
 import ControlButtons from "../ControlButtons/ControlButtons";
   
-function StopWatch({time, setTime}) {
+function StopWatch({time, setTime, maxTimeMillisecs, isComplete, setIsComplete}) {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
-  
   React.useEffect(() => {
     let interval = null;
   
-    if (isActive && isPaused === false) {
+    if (isActive && isPaused === false && isComplete === false) {
+      
       interval = setInterval(() => {
-        setTime((time) => time + 10);
+        setTime((time) => time + 10); // 10 millisecs
+        //console.log ("time: ", time, "target: ", maxTimeMillisecs, "interval: ", interval);
       }, 10);
+      
+      if (time >= maxTimeMillisecs){
+        
+        setIsComplete(true);
+      }
     } else {
       clearInterval(interval);
     }

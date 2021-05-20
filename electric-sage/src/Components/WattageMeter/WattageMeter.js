@@ -3,15 +3,11 @@ import '../../styles.css';
   
 function WattageMeter({totalWattage}) {
 
-
- 
- 
-
- 
- 
   return (
-    <div className="wattage-meter">
-       <h1>Total Wattage {totalWattage}</h1>
+    <div id="wattage-meter">
+      <p id="total-wattage">{totalWattage} W</p>
+      
+       
     </div>
   );
 }

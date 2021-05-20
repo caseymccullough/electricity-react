@@ -17,10 +17,10 @@ export default function LoadProfile( {currentUser, loads, getLoads, setShowLoadP
             <div id="load-list-container" >
                <h1>Load Profile</h1>
                <LoadList loads = {loads} ></LoadList>
-               
                <button id="run-sim-btn" className="btn" onClick={shiftToSim}>
                   <h3>Run Simulation</h3>
-               </button>        
+               </button> 
+       
             </div>
             <LoadBasicsForm currentUser = {currentUser} getLoads = {getLoads}></LoadBasicsForm>
          </div>
