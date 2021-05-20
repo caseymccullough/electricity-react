@@ -20,8 +20,8 @@ export default function LoadProfile( {currentUser, loads, getLoads, setShowLoadP
                <button id="run-sim-btn" className="btn" onClick={shiftToSim}>
                   <h3>Run Simulation</h3>
                </button> 
-       
             </div>
+            
             <LoadBasicsForm currentUser = {currentUser} getLoads = {getLoads}></LoadBasicsForm>
          </div>
       </div>

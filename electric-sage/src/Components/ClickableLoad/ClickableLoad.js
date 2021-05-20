@@ -16,8 +16,7 @@ export default function ClickableLoad({load, time }) {
       load.currentWattage = isOn ? load.standbyWattage: load.wattage; // ARRGH! Why??
 
       let newWattageDelta = {};
-      console.log ("inside handleClick");
-      console.log ("newWattageDelta: ", newWattageDelta);
+
 
       if (isOn){ // just turned on
          
@@ -31,13 +30,13 @@ export default function ClickableLoad({load, time }) {
          // adjustTotalWattage(load.wattage - load.standbyWattage); // wattage will go down
          newWattageDelta = {
             time: -time, // negative indicates being turned off
-            wattage: load.current
+            wattage: load.currentWattage
          }
       }
-      //console.log ("new item: ", newWattageDelta);
-      onOffData.concat(newWattageDelta);
+      console.log ("new item: ", newWattageDelta);
+      load.onOffData.push(newWattageDelta);
 
-      console.log (onOffData);
+      console.log (load.onOffData);
    }
    return (
       

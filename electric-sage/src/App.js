@@ -140,7 +140,7 @@ useEffect (() => {
   return (
   
     <div className="App">
-      <NavBar goToLoadProfile = {goToLoadProfile} goToSim = {goToSim} goToResults = {goToResults}></NavBar>
+      <NavBar goToLoadProfile = {goToLoadProfile} goToSim = {goToSim} goToResults = {goToResults} currentUser = {currentUser}></NavBar>
       
       <main>
           {showHome ? <Home users = {users} setCurrentUser = {setCurrentUser} setShowLoadProfile = {setShowLoadProfile} setShowHome = {setShowHome}/> : <br></br>}

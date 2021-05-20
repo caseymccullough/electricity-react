@@ -7,6 +7,7 @@ a {
 
 ul{
    list-style-type:none;
+   font-size: 1.5em;
 }
 
 #nav-container{
@@ -20,13 +21,19 @@ ul{
 
 #nav-center-text {
    color: white;
+   font-size: 2em;
 }
 
-#nav-logo {
+#nav-logo{
+
+}
+
+#nav-logo-container {
    width: 100px;
-   min-height: 60px;
+   height: 100px;
    margin: 20px;
    background-color: aqua;
    border: 1px black solid;
+   
 }
 

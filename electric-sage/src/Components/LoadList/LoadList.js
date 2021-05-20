@@ -2,15 +2,14 @@ import Load from '../Load/Load';
 import style from '../../styles.css';
 
 export default function LoadList({loads}) {
-
-   
       
    return (
-      <div id="loads-table-container">
+     
          <div id="loads-table" >
             <table>
                <thead>
                   <tr>
+                     <th></th>
                      <th>Load</th>
                      <th>Wattage</th>
                      <th>Standby</th>
@@ -23,7 +22,7 @@ export default function LoadList({loads}) {
                </tbody>
             </table>
          </div>
-      </div>
+     
       
    )
 

@@ -2,19 +2,26 @@ import {useState} from "react";
 
 export default function Load({load}) {
 
-   const [isOn, toggleOnSwitch] = useState(false);
-
-   const handleClick = () => {
-      console.log ("click on ", load);
-
-
-
+   const clickResponse = () => {
+      console.log (load.id);
+      console.log (load.name);
+      deleteLoad(load.name);
    }
+
+   const deleteLoad = async (name) => {
+      try {
+        const response = await fetch(`http://localhost:8800/load/${name}`, {
+          method: "DELETE"
+        })
+      } catch (err) {
+        console.log(err);
+      } 
+    }
+
    return (
       
-         <tr className="load-row" onClick={handleClick} className = {isOn ? 'load-on' : 'load-off'}>
-            <button className="del-button">X</button><td>{load.name}</td><td>{load.wattage}</td><td>{load.standbyWattage}</td><td>{load.dailyUseHours}</td>
-            
+         <tr className="load-row">
+            <td><span className="del-button" onClick={clickResponse}>X</span></td><td>{load.name}</td><td>{load.wattage}</td><td>{load.standbyWattage}</td>
          </tr>
      
       
