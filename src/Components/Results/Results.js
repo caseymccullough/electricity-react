@@ -47,6 +47,45 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
       ) // for each end
    }
 
+   const populateKWH = (loads) =>  {
+
+      for (let i = 0; i < loads.length; i++){
+         const kwms = calcKWH(loads[i].onOffData, loads[i].wattage, loads[i].standbyWattage);
+         loads[i].kwh = kwms / 600;
+         console.log (loads[i].name, loads[i].kwh);
+      }
+
+   }
+
+   const calcKWH = (timeSignals, wattage, standbyWattage) =>{
+      console.log("time signals", timeSignals);
+      const startedOff = (timeSignals[0] < 0); // negative times indicate "off"
+      
+      const times = timeSignals.map(n => Math.abs(n));
+      const intervals = getIntervals(times);
+
+      let evenSums = 0;
+      let oddSums = 0;
+
+      for (let i = 0; i < intervals.length; i++)
+      {
+         if (i % 2 === 0)
+         {
+            evenSums += intervals[i]
+         }
+         else{
+            oddSums += intervals[i];
+         } 
+      }
+
+      const kwh = startedOff ? oddSums * wattage + evenSums * standbyWattage:
+                              evenSums * wattage + oddSums * standbyWattage;
+
+
+      return kwh;
+
+   }
+
 
 
 
@@ -66,18 +105,21 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
 
 
    useEffect(() => {
-      
+      console.log("useEffect in effect");
       addStart();
       addEnd();
-      console.log (loads[0].onOffData);
-      console.log (getIntervals (loads[0].onOffData));
+      populateKWH(loads); 
+      
+     // console.log (loads[0].onOffData);
+      //console.log (getIntervals (loads[0].onOffData));
       //loads.forEach (function(load) {getIntervals(load.onOffData);})
       
 
    });
    
+   
   
-
+ 
 
 
 
@@ -88,7 +130,7 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
       <div id="results">
          <h1>Results</h1>
          <div id="chart-container">
-            <PieChart/>
+            <PieChart /*data={data} *//> // here!
             <AreaChart/>
          </div>
       </div> 

@@ -11,7 +11,7 @@ export default function NavBar(props) {
          </div>
          <div id="nav-center-text">
             <h1 id="nav-name">Electric Enlightenment</h1>
-            <h3>Offering keen insights to reduce your energy bill</h3>
+            <h3>Changing the way you think about energy</h3>
          </div>
          <nav>
          {/* {props.currentUser ? <p>Welcome {props.currentUser.username}</p> : <div/>} */}

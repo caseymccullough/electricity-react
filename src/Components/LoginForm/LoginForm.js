@@ -27,25 +27,25 @@ export default function LoginForm(props) {
 
  return (
    <div id="user-login-page" className="form">
-     <h1>User Login Form</h1>
+     <h1>User Login</h1>
 
      <form onSubmit={handleSubmit} className="user-login-form">
        <label>
-         Username
+         Username:{" "}
          <input 
            type = "text" 
            name="username"
-           placeholder = "username"
+         
            ref={usernameVal} 
           // onChange={handleChange}
            ></input>
        </label>
        <br></br>
        <label>
-         Password
+         Password:{" "}
          <input type="text" 
          name="password"
-         placeholder = "enter password"
+
          ref={passwordVal}
          //onChange={handleChange}
          ></input>

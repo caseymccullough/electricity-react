@@ -27,9 +27,9 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
     //const hours = formData.dailyUseHours + formData.dailyUseMinutes / 60;
     const current = formData.standbyWattage;
     
-    const body = { ...formData, isOn: false, onOffHistory: [], currentWattage: current }; // spreads data from the form
+    const body = { ...formData, isOn: false, onOffHistory: [0], currentWattage: current }; // spreads data from the form
     try {
-      const response = await fetch ("https://electric-sage-api.herokuapp.com/", {
+      const response = await fetch ("https://electric-sage-api.herokuapp.com/load", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -96,27 +96,7 @@ export default function LoadBasicsForm({currentUser, getLoads}) {
            onChange={handleChange}
            ></input>
        </label>
-       <br></br>
-       <label>
-         Daily Use: {" "}
-         <input 
-           type = "number"
-           id = "dailyUseHours" 
-           value={formData.dailyUseHours}
-           onChange={handleChange}
-           placeholder="hours"  
-           ></input>
-       </label>
-      <label>
-        :
-       <input 
-           type = "number"
-           id = "dailyUseMinutes" 
-           value={formData.dailyUseMinutes}
-           onChange={handleChange}
-           placeholder="minutes"  
-           ></input>
-      </label>
+       
 
        <br></br>
        <button onClick={addLoad}>Add Load</button>

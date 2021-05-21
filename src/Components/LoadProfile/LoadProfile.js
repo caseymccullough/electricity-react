@@ -4,7 +4,7 @@ import LoadBasicsForm from '../LoadBasicsForm';
 import LoadList from '../LoadList/LoadList';
 
 
-export default function LoadProfile( {currentUser, loads, getLoads, setShowSim} ) {
+export default function LoadProfile( {currentUser, loads, getLoads, goToSim} ) {
 
 
 
@@ -12,9 +12,9 @@ export default function LoadProfile( {currentUser, loads, getLoads, setShowSim} 
       <div id="load-profile">
          <div id= "list-and-form">
             <div id="load-list-container" >
-               <h1>Load Profile</h1>
+             
                <LoadList loads = {loads} ></LoadList>
-               <button id="run-sim-btn" className="btn" onClick={setShowSim}>
+               <button id="run-sim-btn" onClick={goToSim}>
                   Run Simulation
                </button> 
             </div>

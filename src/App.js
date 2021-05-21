@@ -93,7 +93,7 @@ useEffect (() => {
       
       <main>
           {showHome ? <Home users = {users} setCurrentUser = {setCurrentUser} setShowLoadProfile = {setShowLoadProfile} setShowHome = {setShowHome}/> : <br></br>}
-           {showLoadProfile ? <LoadProfile  currentUser = {currentUser} setLoads = {setLoads} loads = {loads} getLoads = {getLoads} setShowLoadProfile = {setShowLoadProfile} setShowSim = {setShowSim}/> : 
+           {showLoadProfile ? <LoadProfile  currentUser = {currentUser} setLoads = {setLoads} loads = {loads} getLoads = {getLoads} setShowLoadProfile = {setShowLoadProfile} goToSim = {goToSim}/> : 
            <div/>}  {/*empty do-nothing tag */}
             {showSim ?  <RunSim loads = {loads} setFinalTime = {setFinalTime} seeResultsPage = {goToResults} totalWattageHistory = {totalWattageHistory} setTotalWattageHistory = {setTotalWattageHistory}></RunSim> : <div/>}  {/*empty do-nothing tag */}
             {showResults ? <Results loads = {loads} finalTime = {finalTime}></Results> : <div/>}  {/*empty do-nothing tag */}

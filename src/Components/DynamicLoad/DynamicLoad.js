@@ -7,6 +7,7 @@ export default function DynamicLoad({load, time }) {
    
    const toggleOnSwitch = () => {
       load.isOn = (!load.isOn);
+      load.isOn ? issueOnOffReport(time): issueOnOffReport(-time);
    }
 
    const clearOnOffData = () =>
@@ -16,8 +17,7 @@ export default function DynamicLoad({load, time }) {
 
    const turnOff = (time) => {
       if(load.isOn){
-         load.isOn = false;
-         issueOnOffReport();
+         toggleOnSwitch();
       }
    }
 
@@ -25,30 +25,12 @@ export default function DynamicLoad({load, time }) {
       
       toggleOnSwitch();
       load.currentWattage = load.isOn ? load.wattage: load.standbyWattage; // ARRGH! Why??
-      issueOnOffReport(time);
+
    }
 
-   const issueOnOffReport = (time) => {
-      let onOffReport = {};
-      if (load.isOn){ // just turned on
-         
-        // adjustTotalWattage(load.standbyWattage - load.Wattage);
-         onOffReport = {
-            time: time, // negative indicates being turned off
-            wattage: load.currentWattage
-         }
-         
-      }else{ // just turned off
-         // adjustTotalWattage(load.wattage - load.standbyWattage); // wattage will go down
-         onOffReport = {
-            time: -time, // negative indicates being turned off
-            wattage: load.currentWattage
-         }
-      }
+   const issueOnOffReport = (timeSignal) => { // negative means turned off
 
-      load.onOffData.push(onOffReport);
-      console.log (load.onOffData);
-
+      load.onOffData.push(timeSignal);
    }
    
 
