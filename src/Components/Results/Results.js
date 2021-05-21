@@ -1,8 +1,7 @@
 import style from '../../styles.css';
 import Chart from "react-google-charts";
 import AreaChart from '../AreaChart/AreaChart';
-import PieChart from '../PieChart/PieChart';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -17,6 +16,8 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
       identify value of each interval
 
 */
+
+   const [pieChartData, setPieChartData] = useState([]);
 
    
    const addStart = () => {
@@ -106,26 +107,40 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
 
    useEffect(() => {
       console.log("useEffect in effect");
-      addStart();
-      addEnd();
-      populateKWH(loads); 
+      //addStart();
+      //addEnd();
+      //populateKWH(loads);
+      //setPieChartData (prepChartData(loads));
+
       
      // console.log (loads[0].onOffData);
       //console.log (getIntervals (loads[0].onOffData));
       //loads.forEach (function(load) {getIntervals(load.onOffData);})
       
 
-   });
-   
-   
+   }, []);
+
+   const prepChartData = (loads) =>
+   {
+      const data = [];
+
+      console.log ("loads: ", loads);
+
+      for (let i = 0; i < loads.length; i++)
+      {
+         const singleLoad = [loads[i].name, 2];
+         data.push(singleLoad);
+      }
+   }
+
   
-   const data=[
+   const fakeData=[
       ['Load', 'kWh'],
-      ['Refrigerator', 20],
-      ['Television', 2],
-      ['Commute', 2],
-      ['Watch TV', 2],
-      ['Sleep', 7],
+      ['Refrigerator', 10],
+      ['Television', 5.2],
+      ['Lamp', 1.2],
+      ['Computer', 3],
+     
     ];
 
 
@@ -137,7 +152,19 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
       <div id="results">
          <h1>Results</h1>
          <div id="chart-container">
-            <PieChart data={data}/> // here!
+         
+         <Chart
+            width={'500px'}
+            height={'300px'}
+            chartType="PieChart"
+            loader={<div>Loading Chart</div>}
+            data= {pieChartData.length > 0 ? pieChartData : fakeData}
+            options={{
+               title: 'Electricity Use',
+               is3D: true,
+            }}
+            rootProps={{ 'data-testid': '1' }}
+            />
             <AreaChart/>
          </div>
       </div> 

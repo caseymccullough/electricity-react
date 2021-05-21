@@ -65,7 +65,7 @@ export default function RunSim({loads, setFinalTime, totalWattageHistory, setTot
          </button>
          }
 
-         <div id="realtime-wattage"></div>
+         {/* <div id="realtime-wattage"></div> */}
 
 
       </div>
