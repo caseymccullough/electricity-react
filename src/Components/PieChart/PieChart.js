@@ -9,7 +9,7 @@ return(
             chartType="PieChart"
             loader={<div>Loading Chart</div>}
             data={[
-               ['Task', 'Hours per Day'],
+               ['Load', 'kWh'],
                ['Work', 11],
                ['Eat', 2],
                ['Commute', 2],
@@ -17,7 +17,7 @@ return(
                ['Sleep', 7],
             ]}
             options={{
-               title: 'My Daily Activities',
+               title: 'Load Profile',
             }}
             rootProps={{ 'data-testid': '1' }}
             />
