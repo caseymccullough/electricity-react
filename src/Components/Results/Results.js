@@ -119,7 +119,14 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
    
    
   
- 
+   const data=[
+      ['Load', 'kWh'],
+      ['Refrigerator', 20],
+      ['Television', 2],
+      ['Commute', 2],
+      ['Watch TV', 2],
+      ['Sleep', 7],
+    ];
 
 
 
@@ -130,7 +137,7 @@ export default function Results({loads, finalTime, totalWattageHistory}) {
       <div id="results">
          <h1>Results</h1>
          <div id="chart-container">
-            <PieChart /*data={data} *//> // here!
+            <PieChart data={data}/> // here!
             <AreaChart/>
          </div>
       </div> 
