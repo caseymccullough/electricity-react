@@ -24,7 +24,7 @@ export default function DynamicLoad({load, time }) {
    const handleClick = () => {
       
       toggleOnSwitch();
-      load.currentWattage = load.isOn ? load.standbyWattage: load.wattage; // ARRGH! Why??
+      load.currentWattage = load.isOn ? load.wattage: load.standbyWattage; // ARRGH! Why??
       issueOnOffReport(time);
    }
 
@@ -47,6 +47,7 @@ export default function DynamicLoad({load, time }) {
       }
 
       load.onOffData.push(onOffReport);
+      console.log (load.onOffData);
 
    }
    

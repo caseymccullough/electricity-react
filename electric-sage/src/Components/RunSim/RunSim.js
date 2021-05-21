@@ -7,7 +7,7 @@ import WattageMeter from '../WattageMeter/WattageMeter';
 import DynamicLoadList from '../DynamicLoadList/DynamicLoadList';
 
 
-export default function RunSim({loads, totalWattageHistory, setTotalWattageHistory, seeResultsPage}) {
+export default function RunSim({loads, setFinalTime, totalWattageHistory, setTotalWattageHistory, seeResultsPage}) {
 
    const [totalWattage, setTotalWattage] = useState(0);
    const [time, setTime] = useState(0);
@@ -24,8 +24,12 @@ export default function RunSim({loads, totalWattageHistory, setTotalWattageHisto
       
       let sum = 0; 
       loads.forEach(load => {sum += load.currentWattage});
+      return sum;
+   }
 
-      return sum; 
+   const endSimulation = () =>{
+      setFinalTime(time);
+      setIsComplete(true);
 
    }
 
@@ -46,15 +50,20 @@ export default function RunSim({loads, totalWattageHistory, setTotalWattageHisto
 
 
          <div id="stopwatch-wattage-container">
-            <StopWatch time = {time} setTime = {setTime} maxTimeMillisecs = {maxTimeMillisecs} isComplete = {isComplete} setIsComplete = {setIsComplete} />
+            <StopWatch time = {time} setTime = {setTime} maxTimeMillisecs = {maxTimeMillisecs} isComplete = {isComplete}  />
   
             <WattageMeter totalWattage = {totalWattage} />
          </div>
          <DynamicLoadList loads = {loads} time = {time}></DynamicLoadList>
          
-         <button id="see-results-btn"  onClick={seeResultsPage}>
+         { isComplete ?
+            <button id="see-results-btn"  onClick={seeResultsPage}>
             <h3>See Results</h3>
+         </button> : 
+         <button id="finish-sim-btn"  onClick={endSimulation}>
+            <h3>End Simulation</h3>
          </button>
+         }
 
          <div id="realtime-wattage"></div>
 

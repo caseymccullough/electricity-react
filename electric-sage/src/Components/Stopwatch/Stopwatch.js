@@ -10,17 +10,14 @@ function StopWatch({time, setTime, maxTimeMillisecs, isComplete, setIsComplete})
   React.useEffect(() => {
     let interval = null;
   
-    if (isActive && isPaused === false && isComplete === false) {
+    if (isActive && isPaused === false) { // add chance to end. 
       
       interval = setInterval(() => {
         setTime((time) => time + 10); // 10 millisecs
         //console.log ("time: ", time, "target: ", maxTimeMillisecs, "interval: ", interval);
       }, 10);
       
-      if (time >= maxTimeMillisecs){
-        
-        setIsComplete(true);
-      }
+
     } else {
       clearInterval(interval);
     }
